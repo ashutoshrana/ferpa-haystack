@@ -214,7 +214,6 @@ class FERPAMetadataFilter:
         logger.info(record.to_log_entry())
         return {"documents": authorized, "disclosure_record": record}
 
-    @component.output_types(documents=list[Document], disclosure_record=FERPADisclosureRecord)
     async def run_async(self, documents: list[Document]) -> dict[str, Any]:
         """Async variant of run — filtering is CPU-bound, runs synchronously."""
         return self.run(documents)
