@@ -1,0 +1,84 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "ferpa-haystack"
+dynamic = ["version"]
+description = "FERPA-compliant document filter for Haystack RAG pipelines — enforces identity-scoped access control before documents reach the LLM"
+readme = "README.md"
+license = "Apache-2.0"
+requires-python = ">=3.10"
+authors = [
+  { name = "Ashutosh Rana", email = "ai.automate101@gmail.com" },
+]
+keywords = [
+  "haystack",
+  "RAG",
+  "FERPA",
+  "compliance",
+  "education",
+  "NLP",
+  "LLM",
+  "data-privacy",
+  "higher-education",
+  "AI-governance",
+]
+classifiers = [
+  "Development Status :: 4 - Beta",
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: Apache Software License",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+  "haystack-ai>=2.0.0",
+]
+
+[project.optional-dependencies]
+dev = [
+  "pytest>=7.0",
+  "pytest-asyncio>=0.21",
+  "hatch",
+]
+
+[project.urls]
+Homepage = "https://github.com/ashutoshrana/ferpa-haystack"
+Documentation = "https://github.com/ashutoshrana/ferpa-haystack#readme"
+"Bug Tracker" = "https://github.com/ashutoshrana/ferpa-haystack/issues"
+"Source Code" = "https://github.com/ashutoshrana/ferpa-haystack"
+
+[tool.hatch.version]
+path = "src/haystack_integrations/components/filters/ferpa_filter/__about__.py"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/haystack_integrations"]
+
+[tool.hatch.envs.default]
+dependencies = [
+  "coverage[toml]>=6.5",
+  "pytest>=7.0",
+  "pytest-asyncio>=0.21",
+  "haystack-ai>=2.0.0",
+]
+
+[tool.hatch.envs.default.scripts]
+test = "pytest {args:tests}"
+test-cov = "coverage run -m pytest {args:tests}"
+cov-report = ["coverage report"]
+fmt = ["ruff format {args:.}", "ruff check --fix {args:.}"]
+lint = ["ruff check {args:.}"]
+
+[tool.hatch.envs.test]
+[[tool.hatch.envs.test.matrix]]
+python = ["3.10", "3.11", "3.12"]
+
+[tool.ruff]
+line-length = 120
+target-version = "py310"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
