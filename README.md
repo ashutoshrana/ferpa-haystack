@@ -1,3 +1,11 @@
+# Legacy repository — migrate to haystack-ferpa-filter
+
+The canonical source for the `ferpa-haystack` distribution and existing import namespace is now [haystack-ferpa-filter](https://github.com/ashutoshrana/haystack-ferpa-filter). This repository preserves historical code; its publishing workflow is disabled. Do not install both source checkouts in the same environment.
+
+For unreleased changes, install from a reviewed canonical commit. Existing PyPI versions are not automatically updated by this migration. See the canonical migration guide for strict metadata authorization changes.
+
+---
+
 # ferpa-haystack
 
 [![PyPI](https://img.shields.io/pypi/v/ferpa-haystack.svg)](https://pypi.org/project/ferpa-haystack/)
