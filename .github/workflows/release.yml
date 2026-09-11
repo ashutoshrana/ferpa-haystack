@@ -7,6 +7,8 @@ on:
 
 jobs:
   release:
+    # Canonical publishing lives in haystack-ferpa-filter. Preserve historical workflow only.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     environment: release
     steps:
